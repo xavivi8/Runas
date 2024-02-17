@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#685E5E</color>
+    <color name="card_back">#DFD364</color>
+    <color name="silvia">#990033</color>
+    <color name="Lila">#984BE7</color>
 </resources>
