@@ -7,18 +7,25 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import com.example.runas.DBControler.UsuarioDatabase
 import com.example.runas.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Login : AppCompatActivity() {
+    lateinit var database: UsuarioDatabase
     lateinit var editTextUser: EditText
     lateinit var editTextPass: EditText
     lateinit var checkRememberUser: CheckBox
     lateinit var btnLogin: Button
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        val id: Long = -1
         editTextUser = findViewById(R.id.editTextUser)
         editTextPass = findViewById(R.id.editTextPass)
         checkRememberUser = findViewById(R.id.checkRememberUser)
@@ -26,7 +33,25 @@ class Login : AppCompatActivity() {
 
         // para cargar los datos guardados del fichero de variables compartidas
         getValuesFromShared()
-        btnLogin.setOnClickListener{ onClickLogin()}
+
+        btnLogin.setOnClickListener{
+            onClickLogin()
+            val eLUsuario = editTextUser.text.toString()
+            val laContra = editTextPass.text.toString()
+
+            // Utiliza un coroutine para llamar a checkUsuario
+            CoroutineScope(Dispatchers.Main).launch {
+                val id = database.usuarioDao().checkUsuario(eLUsuario, laContra)
+
+                // Verificar si el usuario existe
+                if (id != null) {
+                    showToast("¡Inicio de sesión exitoso!")
+                    // startNewActivity()
+                } else {
+                    showToast("Usuario o contraseña incorrectos")
+                }
+            }
+        }
     }
 
     private fun getValuesFromShared(){
