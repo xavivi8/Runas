@@ -36,12 +36,10 @@ class Login : AppCompatActivity() {
 
         btnLogin.setOnClickListener{
             onClickLogin()
-            val eLUsuario = editTextUser.text.toString()
-            val laContra = editTextPass.text.toString()
 
             // Utiliza un coroutine para llamar a checkUsuario
             CoroutineScope(Dispatchers.Main).launch {
-                val id = database.usuarioDao().checkUsuario(eLUsuario, laContra)
+                val id = database.usuarioDao().checkUsuario(editTextUser.text.toString(), editTextPass.text.toString())
 
                 // Verificar si el usuario existe
                 if (id != null) {
