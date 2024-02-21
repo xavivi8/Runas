@@ -1,5 +1,6 @@
 package com.example.runas.Login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -19,6 +20,7 @@ class Login : AppCompatActivity() {
     lateinit var editTextPass: EditText
     lateinit var checkRememberUser: CheckBox
     lateinit var btnLogin: Button
+    lateinit var btnRegistro: Button
 
 
 
@@ -30,6 +32,7 @@ class Login : AppCompatActivity() {
         editTextPass = findViewById(R.id.editTextPass)
         checkRememberUser = findViewById(R.id.checkRememberUser)
         btnLogin = findViewById(R.id.btnLogin)
+        btnRegistro = findViewById(R.id.btnRegistro)
 
         // para cargar los datos guardados del fichero de variables compartidas
         getValuesFromShared()
@@ -49,6 +52,11 @@ class Login : AppCompatActivity() {
                     showToast("Usuario o contraseña incorrectos")
                 }
             }
+        }
+
+        btnRegistro.setOnClickListener {
+            val intentBtn = Intent(this, Registro::class.java)
+            startActivity(intentBtn)
         }
     }
 
