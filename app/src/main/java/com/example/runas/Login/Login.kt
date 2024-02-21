@@ -48,7 +48,7 @@ class Login : AppCompatActivity() {
 
                 // Verificar si el usuario existe
                 if (id != null) {
-                    showToast("¡Inicio de sesión exitoso!")
+                    showToast("¡Inicio de sesión exitoso!"+id)
                     // startNewActivity()
                 } else {
                     showToast("Usuario o contraseña incorrectos")
@@ -81,7 +81,7 @@ class Login : AppCompatActivity() {
         } else {
             SharedApplication.preferences.user = editTextUser.text.toString()
             SharedApplication.preferences.pass = editTextPass.text.toString()
-            showToast("Datos guardados")
+            //showToast("Datos guardados")
         }
     }
 
