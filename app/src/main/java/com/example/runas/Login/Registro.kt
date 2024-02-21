@@ -5,8 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.runas.DBControler.Usuario
 import com.example.runas.DBControler.UsuarioDatabase
 import com.example.runas.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 class Registro : AppCompatActivity() {
     lateinit var database: UsuarioDatabase
@@ -19,6 +24,7 @@ class Registro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
+        database = UsuarioDatabase(this)
 
         guardar = findViewById(R.id.btnGuardar)
         cancelar = findViewById(R.id.btnCancelar)
@@ -30,14 +36,31 @@ class Registro : AppCompatActivity() {
 
             if (comprobarContra(pass.text.toString(), passAgain.text.toString())) {
                 showToast("Las contraseñas coinciden.")
-                finish()
+                val usuario = Usuario(usuario = user.text.toString(), contrasenya = pass.text.toString())
+                // Lanzar una corrutina en el hilo de fondo
+                CoroutineScope(Dispatchers.IO).launch {
+                    // Llamar a insertUsuarioSafe en el hilo de fondo
+                    val exitoso = database.usuarioDao().insertUsuarioSafe(usuario)
+
+                    // Actualizar la interfaz de usuario en el hilo principal
+                    withContext(Dispatchers.Main) {
+                        if (exitoso) {
+                            showToast("Usuario insertado correctamente.")
+                            finish()
+                        } else {
+                            showToast("Error al insertar el usuario.")
+                        }
+                    }
+                }
             } else {
                 showToast("Las contraseñas no coinciden.")
             }
         }
 
         cancelar.setOnClickListener {
-            finish()
+            if(!isFinishing){
+                finish()
+            }
         }
     }
 

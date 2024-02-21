@@ -27,6 +27,8 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        database = UsuarioDatabase(this)
+
         val id: Long = -1
         editTextUser = findViewById(R.id.editTextUser)
         editTextPass = findViewById(R.id.editTextPass)
