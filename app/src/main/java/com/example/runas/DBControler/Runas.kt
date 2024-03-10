@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "runas")
 class Runas (
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id_runas")
-    val id_runa: Long = 0,
+    @ColumnInfo(name = "id_runa")
+    val id_runa: Long? = 0,
 
     @ColumnInfo(name = "id_usuario")
     val id_usuario: Long,
