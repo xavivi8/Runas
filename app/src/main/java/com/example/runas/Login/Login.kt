@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.runas.DBControler.UsuarioDatabase
 import com.example.runas.R
 import com.example.runas.Runas.ListaRunas
+import com.example.runas.Runas.MenuRunas
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,7 +31,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         database = UsuarioDatabase(this)
 
-        val intentListaRunas = Intent(this, ListaRunas::class.java);
+        val intentListaRunas = Intent(this, MenuRunas::class.java);
         val id: Long = -1
         editTextUser = findViewById(R.id.editTextUser)
         editTextPass = findViewById(R.id.editTextPass)
