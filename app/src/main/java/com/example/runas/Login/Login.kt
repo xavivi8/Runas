@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.runas.DBControler.UsuarioDatabase
 import com.example.runas.R
+import com.example.runas.Runas.ListaRunas
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,6 +30,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         database = UsuarioDatabase(this)
 
+        val intentListaRunas = Intent(this, ListaRunas::class.java);
         val id: Long = -1
         editTextUser = findViewById(R.id.editTextUser)
         editTextPass = findViewById(R.id.editTextPass)
@@ -49,6 +51,10 @@ class Login : AppCompatActivity() {
                 // Verificar si el usuario existe
                 if (id != null) {
                     showToast("¡Inicio de sesión exitoso!"+id)
+                    intentListaRunas.putExtra("id_usuario", id);
+                    startActivity(intentListaRunas);
+
+
                     // startNewActivity()
                 } else {
                     showToast("Usuario o contraseña incorrectos")
