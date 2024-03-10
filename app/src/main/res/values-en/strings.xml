@@ -67,4 +67,21 @@
     <string name="sobrecrecimiento">Overgrowth</string>
     <string name="revitalizar">Revitalize</string>
     <string name="inquebrantable">Unwavering</string>
+    <string name="libro_de_hechizos">"Spell book "</string>
+    <string name="mejora_glacial">"Glacial upgrade "</string>
+    <string name="primer_golpe">"First strike "</string>
+    <string name="destello_hextech">"Hextech Flash "</string>
+    <string name="calzado_magico">"Magic footwear "</string>
+    <string name="tonico_triple">"Triple toner "</string>
+    <string name="mercado_del_futuro">"Market of the future "</string>
+    <string name="desmaterializador_de_subditos">"Minion Dematerializer "</string>
+    <string name="entrega_de_galletas">"Cookie delivery "</string>
+    <string name="perspicacia_cosmica">"Cosmic insight "</string>
+    <string name="velocidad_de_acercamiento">"Approach speed "</string>
+    <string name="tonico_de_distorsion_temporal">"Time Warp Tonic "</string>
+    <string name="fuerza_adaptable">"Adaptive strength "</string>
+    <string name="velocidad_de_ataque">"Attack speed "</string>
+    <string name="progresion_de_vida">"Life progression "</string>
+    <string name="resistencia_a_tenacidad_y_relentizaciones">"Resistance to tenacity and slowdowns "</string>
+    <string name="velocidad_de_habilidades">"Skill Speed "</string>
 </resources>
