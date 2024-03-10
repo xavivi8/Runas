@@ -66,4 +66,21 @@
     <string name="sobrecrecimiento">Sobrecrecimiento</string>
     <string name="revitalizar">Revitalizar</string>
     <string name="inquebrantable">Inquebrantable</string>
+    <string name="libro_de_hechizos">Libro de hechizos</string>
+    <string name="mejora_glacial">Mejora glacial</string>
+    <string name="primer_golpe">Primer golpe</string>
+    <string name="destello_hextech">Destello hextech</string>
+    <string name="calzado_magico">Calzado mágico</string>
+    <string name="tonico_triple">Tónico triple</string>
+    <string name="mercado_del_futuro">Mercado del futuro</string>
+    <string name="desmaterializador_de_subditos">Desmaterializador de subditos</string>
+    <string name="entrega_de_galletas">Entrega de galletas</string>
+    <string name="perspicacia_cosmica">Perspicacia cósmica</string>
+    <string name="velocidad_de_acercamiento">Velocidad de acercamiento</string>
+    <string name="tonico_de_distorsion_temporal">Tónico de distorsión temporal</string>
+    <string name="fuerza_adaptable">Fuerza adaptable</string>
+    <string name="velocidad_de_ataque">Velocidad de ataque</string>
+    <string name="velocidad_de_habilidades">Velocidad de habilidades</string>
+    <string name="progresion_de_vida">Progresión de vida</string>
+    <string name="resistencia_a_tenacidad_y_relentizaciones">Resistencia a tenacidad y ralentizaciones</string>
 </resources>
