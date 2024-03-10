@@ -14,16 +14,6 @@ interface RunasDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertRunas(runas: Runas): Long
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertarRunasConParametros(
-        id_usuario: Long,
-        runaPrincipal: Long,
-        subRunasPrincipal: String,
-        runaSecundaria: Long,
-        subRunasSecundaria: String,
-        ventajasAdicionales: String
-    )
-
     @Update
     suspend fun actualizarRunas(runas: Runas)
 
