@@ -8,18 +8,18 @@ import android.widget.ArrayAdapter
 import com.example.runas.R
 
 class InsertarRunas : AppCompatActivity() {
-    val va: Long = 1
-    val runaPrincipal: String = getString(R.string.precision)
-    val runaPrincipal1: String = getString(R.string.ataque_intensificado)
-    val runaPrincipal2: String = getString(R.string.supercoracion)
-    val runaPrincipal3: String = getString(R.string.leyenda_presteza)
-    val runaPrincipal4: String = getString(R.string.golpe_de_gracia)
-    val runaSecundaria: String = getString(R.string.dominacion)
-    val runaSecundaria1: String = getString(R.string.golpe_bajo)
-    val runaSecundaria2: String = getString(R.string.sabor_a_sangre)
-    val subRuna1: String = getString(R.string.fuerza_adaptable)
-    val subRuna2: String = getString(R.string.fuerza_adaptable)
-    val subRuna3: String = getString(R.string.vida)
+    var va: Long = 1
+    var runaPrincipal: String = getString(R.string.precision)
+    var runaPrincipal1: String = getString(R.string.ataque_intensificado)
+    var runaPrincipal2: String = getString(R.string.supercoracion)
+    var runaPrincipal3: String = getString(R.string.leyenda_presteza)
+    var runaPrincipal4: String = getString(R.string.golpe_de_gracia)
+    var runaSecundaria: String = getString(R.string.dominacion)
+    var runaSecundaria1: String = getString(R.string.golpe_bajo)
+    var runaSecundaria2: String = getString(R.string.sabor_a_sangre)
+    var subRuna1: String = getString(R.string.fuerza_adaptable)
+    var subRuna2: String = getString(R.string.fuerza_adaptable)
+    var subRuna3: String = getString(R.string.vida)
 
 
     lateinit var spinnerRunasPrin: Spinner
@@ -107,6 +107,7 @@ class InsertarRunas : AppCompatActivity() {
         spinnerRunasPrin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
+                runaPrincipal = selectedValue.toString()
                 when(selectedValue) {
                     getString(R.string.precision) -> {
                         val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasPrecision1))
