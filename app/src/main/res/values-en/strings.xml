@@ -84,4 +84,9 @@
     <string name="progresion_de_vida">"Life progression "</string>
     <string name="resistencia_a_tenacidad_y_relentizaciones">"Resistance to tenacity and slowdowns "</string>
     <string name="velocidad_de_habilidades">"Skill Speed "</string>
+    <string name="subrunas">Subrunes</string>
+    <string name="velovidad_de_movimiento">"Speed ​​of movement "</string>
+    <string name="vida">Life</string>
+    <string name="runa_principal">Main rune</string>
+    <string name="runa_secundaria">"Secondary rune "</string>
 </resources>
