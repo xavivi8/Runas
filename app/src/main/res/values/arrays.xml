@@ -166,17 +166,17 @@
         <item>@string/velocidad_de_acercamiento</item>
         <item>@string/tonico_de_distorsion_temporal</item>
     </array>
-    <array name="runasSubrunas1">
+    <array name="spinnerSubRunas1">
         <item>@string/fuerza_adaptable</item>
         <item>@string/velocidad_de_ataque</item>
         <item>@string/velocidad_de_habilidades</item>
     </array>
-    <array name="runasSubrunas2">
+    <array name="spinnerSubRunas2">
         <item>@string/fuerza_adaptable</item>
         <item>@string/velovidad_de_movimiento</item>
         <item>@string/progresion_de_vida</item>
     </array>
-    <array name="runasSubrunas3">
+    <array name="spinnerSubRunas3">
         <item>@string/vida</item>
         <item>@string/resistencia_a_tenacidad_y_relentizaciones</item>
         <item>@string/progresion_de_vida</item>
