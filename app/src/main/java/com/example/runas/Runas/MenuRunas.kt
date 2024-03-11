@@ -10,7 +10,7 @@ import com.example.runas.R
 
 class MenuRunas : AppCompatActivity() {
 
-    var id: Long = 0
+    var id_usuario: Long = 1
 
     lateinit var textViewID: TextView
     lateinit var btnPerfil: Button
@@ -23,9 +23,9 @@ class MenuRunas : AppCompatActivity() {
         setContentView(R.layout.activity_menu_runas)
 
         textViewID = findViewById(R.id.textViewID)
-        id = intent.getLongExtra("id_usuario", 500)
-        textViewID.text = "Id de Usuario: $id"
-        if (id != 0L && id != 500L) {
+        id_usuario = intent.getLongExtra("id_usuario", 500)
+        textViewID.text = "Id de Usuario: $id_usuario"
+        if (id_usuario != 0L && id_usuario != 500L) {
 
         } else {
             val inetntBtn = Intent(this, Login::class.java)
@@ -44,15 +44,16 @@ class MenuRunas : AppCompatActivity() {
         btnAgregarRuna = findViewById(R.id.btnAgregarRuna)
         btnAgregarRuna.setOnClickListener {
             val inetntBtn = Intent(this, InsertarRunas::class.java)
-            inetntBtn.putExtra("id_usuario", id);
+            inetntBtn.putExtra("id_usuario", id_usuario);
             startActivity(inetntBtn)
+            finish()
         }
 
         /* Botón listar runas */
         btnListRuna = findViewById(R.id.btnListRuna)
         btnListRuna.setOnClickListener {
             val inetntBtn = Intent(this, ListaRunas::class.java)
-            inetntBtn.putExtra("id_usuario", id);
+            inetntBtn.putExtra("id_usuario", id_usuario);
             startActivity(inetntBtn)
         }
 
