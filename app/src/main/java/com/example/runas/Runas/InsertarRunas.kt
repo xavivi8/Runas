@@ -41,17 +41,50 @@ class InsertarRunas : AppCompatActivity() {
         spinnerSubRunas2 = findViewById(R.id.spinnerSubRunas2)
         spinnerSubRunas3 = findViewById(R.id.spinnerSubRunas3)
 
+        /**
+         * Spinner spinnerSubRunas1
+         */
         val adapterSpinnerSubRunas1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas1))
         adapterSpinnerSubRunas1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerSubRunas1.adapter = adapterSpinnerSubRunas1
+        spinnerSubRunas1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
 
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Implementación opcional para cuando no se selecciona nada
+            }
+        }
+
+        /**
+         * Spinner spinnerSubRunas2
+         */
         val adapterSpinnerSubRunas2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas2))
         adapterSpinnerSubRunas2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerSubRunas2.adapter = adapterSpinnerSubRunas2
+        spinnerSubRunas2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
 
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Implementación opcional para cuando no se selecciona nada
+            }
+        }
+
+        /**
+         * Spinner spinnerSubRunas3
+         */
         val adapterSpinnerSubRunas3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas3))
         adapterSpinnerSubRunas3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerSubRunas3.adapter = adapterSpinnerSubRunas3
+        spinnerSubRunas3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Implementación opcional para cuando no se selecciona nada
+            }
+        }
 
         /**
          * Spinner de las runas principal
