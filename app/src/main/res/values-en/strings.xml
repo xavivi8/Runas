@@ -4,7 +4,7 @@
     <string name="usuario">User</string>
     <string name="pass">Password</string>
     <string name="passAgain">Write the password, again</string>
-    <string name="guardar">Keep</string>
+    <string name="guardar">Save</string>
     <string name="cancelar">Cancel</string>
     <string name="registro">"Create user "</string>
     <string name="login">Login</string>
