@@ -16,6 +16,12 @@ class InsertarRunas : AppCompatActivity() {
     lateinit var spinnerRunasPrin3: Spinner
     lateinit var spinnerRunasPrin4: Spinner
     lateinit var spinnerRunasSecun: Spinner
+    lateinit var spinnerRunasSecun1: Spinner
+    lateinit var spinnerRunasSecun2: Spinner
+    lateinit var spinnerRunasSecun3: Spinner
+    lateinit var spinnerSubRunas1: Spinner
+    lateinit var spinnerSubRunas2: Spinner
+    lateinit var spinnerSubRunas3: Spinner
     private val runasArray by lazy { resources.getStringArray(R.array.runasPrincipales) }
 
 
@@ -30,6 +36,12 @@ class InsertarRunas : AppCompatActivity() {
         spinnerRunasPrin3 = findViewById(R.id.spinnerRunasPrin3)
         spinnerRunasPrin4 = findViewById(R.id.spinnerRunasPrin4)
         spinnerRunasSecun = findViewById(R.id.spinnerRunasSecun)
+        spinnerRunasSecun1 = findViewById(R.id.spinnerRunasSecun1)
+        spinnerRunasSecun2 = findViewById(R.id.spinnerRunasSecun2)
+        spinnerRunasSecun3 = findViewById(R.id.spinnerRunasSecun3)
+        spinnerSubRunas1 = findViewById(R.id.spinnerSubRunas1)
+        spinnerSubRunas2 = findViewById(R.id.spinnerSubRunas2)
+        spinnerSubRunas3 = findViewById(R.id.spinnerSubRunas3)
 
         // Obtener el array de opciones desde los recursos
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, runasArray)
