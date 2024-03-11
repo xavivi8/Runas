@@ -1,6 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="runasPrincipales">
-        <item></item>
+        <item>@string/precision</item>
+        <item>@string/dominacion</item>
+        <item>@string/brujeria</item>
+        <item>@string/valor</item>
+        <item>@string/inspiracion</item>
     </array>
+    <array name="runasPrecision1">
+        <item>@string/ataque_intensificado</item>
+        <item>@string/compas_letal</item>
+        <item>@string/pies_veloces</item>
+        <item>@string/conquistador</item>
+    </array>
+    <array name="runasPrecision2">
+        <item>@string/supercoracion</item>
+        <item>@string/triunfo</item>
+        <item>@string/claridad_mental</item>
+    </array>
+    <array name="runasPrecision3">
+        <item>@string/leyenda_presteza</item>
+        <item>@string/leyenda_tenacidad</item>
+        <item>@string/leyenda_linaje</item>
+    </array>
+    <array name="runasPrecision4">
+        <item>@string/golpe_de_gracia</item>
+        <item>@string/derribado</item>
+        <item>@string/ultimo_esfuerzo</item>
+    </array>
+    <array name="runasDominacion1">
+        <item>@string/electrocutar</item>
+        <item>@string/depredador</item>
+        <item>@string/cosecha_oscura</item>
+        <item>@string/lluvia_de_cuchillas</item>
+    </array>
+    <array name="runasDominacion2">
+        <item>@string/golpe_bajo</item>
+        <item>@string/sabor_a_sangre</item>
+        <item>@string/impacto_repentino</item>
+    </array>
+    <array name="runasDominacion3">
+        <item>@string/guardian_zombie</item>
+        <item>@string/poro_fantasmal</item>
+        <item>@string/coleccion_de_glovos_oculares</item>
+    </array>
+    <array name="runasDominacion4">
+        <item>@string/cazador_de_tesoros</item>
+        <item>@string/cazador_ingenioso</item>
+        <item>@string/cazador_incesante</item>
+        <item>@string/cazador_definitivo</item>
+    </array>
+    <array name="runasBrujeria1">
+        <item>@string/invocar_a_aery</item>
+        <item>@string/cometa_arcano</item>
+        <item>@string/irrupcion_de_fase</item>
+    </array>
+    <array name="runasBrujeria2">
+        <item>@string/orbe_anulador</item>
+        <item>@string/banda_de_mana</item>
+        <item>@string/capa_del_nimbo</item>
+    </array>
+    <array name="runasBrujeria3">
+        <item>@string/trascendencia</item>
+        <item>@string/celeridad</item>
+        <item>@string/concentracion_absoluta</item>
+    </array>
+    <array name="runasBrujeria4">
+        <item>@string/pirolaser</item>
+        <item>@string/caminar_sobre_agua</item>
+        <item>@string/se_avecina_tormenta</item>
+    </array>
+    <array name="runasValor1">
+        <item>@string/garras_del_inmortal</item>
+        <item>@string/reverberacion</item>
+        <item>@string/protector</item>
+    </array>
+    <array name="runasValor2">
+        <item>@string/demoler</item>
+        <item>@string/fuente_de_vida</item>
+        <item>@string/golpe_de_escudo</item>
+    </array>
+    <array name="runasValor3">
+        <item>@string/condicionamiento</item>
+        <item>@string/fuerzas_renovadas</item>
+        <item>@string/revestimiento_de_huesos</item>
+    </array>
+    <array name="runasValor4">
+        <item>@string/sobrecrecimiento</item>
+        <item>@string/revitalizar</item>
+        <item>@string/inquebrantable</item>
+    </array>
+    <array name="runasInspiracion1">
+        <item>@string/mejora_glacial</item>
+        <item>@string/libro_de_hechizos</item>
+        <item>@string/primer_golpe</item>
+    </array>
+    <array name="runasInspiracion2">
+        <item>@string/destello_hextech</item>
+        <item>@string/calzado_magico</item>
+        <item>@string/tonico_triple</item>
+    </array>
+    <array name="runasInspiracion3">
+        <item>@string/mercado_del_futuro</item>
+        <item>@string/desmaterializador_de_subditos</item>
+        <item>@string/entrega_de_galletas</item>
+    </array>
+    <array name="runasInspiracion4">
+        <item>@string/perspicacia_cosmica</item>
+        <item>@string/velocidad_de_acercamiento</item>
+        <item>@string/tonico_de_distorsion_temporal</item>
+    </array>
+    <array name="runasSubrunas1">
+        <item>@string/fuerza_adaptable</item>
+        <item>@string/velocidad_de_ataque</item>
+        <item>@string/velocidad_de_habilidades</item>
+    </array>
+    <array name="runasSubrunas2">
+        <item>@string/fuerza_adaptable</item>
+        <item>@string/velovidad_de_movimiento</item>
+        <item>@string/progresion_de_vida</item>
+    </array>
+    <array name="runasSubrunas3">
+        <item>@string/vida</item>
+        <item>@string/resistencia_a_tenacidad_y_relentizaciones</item>
+        <item>@string/progresion_de_vida</item>
+    </array>
+
 </resources>
