@@ -13,6 +13,8 @@ import com.example.runas.DBControler.Runas
 import com.example.runas.DBControler.RunasDatabase
 import com.example.runas.Login.Login
 import com.example.runas.R
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -108,6 +110,21 @@ class InsertarRunas : AppCompatActivity() {
             intentBtn.putExtra("id_usuario", id_usuario);
             startActivity(intentBtn)
             finish()
+        }
+
+        /**
+         * Btn save
+         */
+        btnSave.setOnClickListener {
+            val intentBtn = Intent(this, MenuRunas::class.java)
+            intentBtn.putExtra("id_usuario", id_usuario);
+            GlobalScope.launch(Dispatchers.Main) {
+                val idInsertado = guardarRuna().await()
+                if (idInsertado > 0) {
+                    startActivity(intentBtn)
+                    finish()
+                }
+            }
         }
 
         /**
@@ -353,31 +370,57 @@ class InsertarRunas : AppCompatActivity() {
         return values.toTypedArray()
     }
 
-    private fun guardarRuna(){
+    /**
+     * guardarRuna se ha convertido en una función asincrona para evitar un bloqueo en el hilo principal
+     */
+    private fun guardarRuna(): CompletableDeferred<Long> {
         database = RunasDatabase(this)
+        val deferred = CompletableDeferred<Long>()
         nombre = edittextName.text.toString()
-        val nuevaRuna = Runas(
-            id_usuario = id_usuario,
-            nombre = nombre,
-            runaPrincipal = runaPrincipal,
-            subRunasPrincipal = "$runaPrincipal1,$runaPrincipal2,$runaPrincipal3,$runaPrincipal4",
-            runaSecundaria = runaSecundaria,
-            subRunasSecundaria = "$runaSecundaria1,$runaSecundaria2",
-            ventajasAdicionales = "$subRuna1,$subRuna2,$subRuna3"
-        )
+        if (comprobarValores() == true){
+            val nuevaRuna = Runas(
+                id_usuario = id_usuario,
+                nombre = nombre,
+                runaPrincipal = runaPrincipal,
+                subRunasPrincipal = "$runaPrincipal1,$runaPrincipal2,$runaPrincipal3,$runaPrincipal4",
+                runaSecundaria = runaSecundaria,
+                subRunasSecundaria = "$runaSecundaria1,$runaSecundaria2",
+                ventajasAdicionales = "$subRuna1,$subRuna2,$subRuna3"
+            )
+            // Usar CompletableDeferred para esperar el resultado de la inserción
 
-        // Insertar la nueva instancia de Runas en la base de datos
-        GlobalScope.launch(Dispatchers.IO) {
-            val idInsertado = database.runasDao().insertRunas(nuevaRuna)
-            if (idInsertado > 0) {
-                // Éxito: la runa se ha guardado correctamente
-                // Puedes mostrar un mensaje o realizar alguna otra acción aquí
-            } else {
-                // Error al guardar la runa
-                // Puedes mostrar un mensaje de error o realizar alguna otra acción aquí
+
+            // Insertar la nueva instancia de Runas en la base de datos
+            GlobalScope.launch(Dispatchers.IO) {
+                val idInsertado: Long = database.runasDao().insertRunas(nuevaRuna)
+                if (idInsertado > 0) {
+                    Snackbar.make(findViewById(android.R.id.content), "Inserción correcta. ID: $idInsertado Nombre de la página de runas $nombre", Snackbar.LENGTH_SHORT).show()
+                    deferred.complete(idInsertado)
+                } else {
+                    Snackbar.make(findViewById(android.R.id.content), "Inserción incorrecta $idInsertado", Snackbar.LENGTH_SHORT).show()
+                    deferred.complete(0)
+                }
             }
+
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), "Algun valor falta por rellenar", Snackbar.LENGTH_SHORT).show()
+            deferred.complete(0)
         }
+        return deferred // Esperar y devolver el resultado
     }
 
-
+    private fun comprobarValores(): Boolean {
+        return !(nombre.isNullOrEmpty() ||
+                runaPrincipal.isNullOrEmpty() ||
+                runaPrincipal1.isNullOrEmpty() ||
+                runaPrincipal2.isNullOrEmpty() ||
+                runaPrincipal3.isNullOrEmpty() ||
+                runaPrincipal4.isNullOrEmpty() ||
+                runaSecundaria.isNullOrEmpty() ||
+                runaSecundaria1.isNullOrEmpty() ||
+                runaSecundaria2.isNullOrEmpty() ||
+                subRuna1.isNullOrEmpty() ||
+                subRuna2.isNullOrEmpty() ||
+                subRuna3.isNullOrEmpty())
+    }
 }
