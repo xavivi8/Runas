@@ -41,6 +41,18 @@ class InsertarRunas : AppCompatActivity() {
         spinnerSubRunas2 = findViewById(R.id.spinnerSubRunas2)
         spinnerSubRunas3 = findViewById(R.id.spinnerSubRunas3)
 
+        val adapterSpinnerSubRunas1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas1))
+        adapterSpinnerSubRunas1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSubRunas1.adapter = adapterSpinnerSubRunas1
+
+        val adapterSpinnerSubRunas2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas2))
+        adapterSpinnerSubRunas2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSubRunas2.adapter = adapterSpinnerSubRunas2
+
+        val adapterSpinnerSubRunas3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas3))
+        adapterSpinnerSubRunas3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSubRunas3.adapter = adapterSpinnerSubRunas3
+
         /**
          * Spinner de las runas principal
          */
