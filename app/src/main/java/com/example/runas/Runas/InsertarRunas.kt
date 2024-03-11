@@ -120,7 +120,7 @@ class InsertarRunas : AppCompatActivity() {
             intentBtn.putExtra("id_usuario", id_usuario);
             GlobalScope.launch(Dispatchers.Main) {
                 val idInsertado = guardarRuna().await()
-                if (idInsertado > 0) {
+                if (idInsertado >= 0) {
                     startActivity(intentBtn)
                     finish()
                 }
@@ -393,7 +393,7 @@ class InsertarRunas : AppCompatActivity() {
             // Insertar la nueva instancia de Runas en la base de datos
             GlobalScope.launch(Dispatchers.IO) {
                 val idInsertado: Long = database.runasDao().insertRunas(nuevaRuna)
-                if (idInsertado > 0) {
+                if (idInsertado >= 0) {
                     Snackbar.make(findViewById(android.R.id.content), "Inserción correcta. ID: $idInsertado Nombre de la página de runas $nombre", Snackbar.LENGTH_SHORT).show()
                     deferred.complete(idInsertado)
                 } else {
