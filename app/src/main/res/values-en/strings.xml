@@ -89,4 +89,5 @@
     <string name="vida">Life</string>
     <string name="runa_principal">Main rune</string>
     <string name="runa_secundaria">"Secondary rune "</string>
+    <string name="nombre_de_la_pagina_de_runa">"Rune page name "</string>
 </resources>
