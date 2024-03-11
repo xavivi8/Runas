@@ -83,4 +83,9 @@
     <string name="velocidad_de_habilidades">Velocidad de habilidades</string>
     <string name="progresion_de_vida">Progresión de vida</string>
     <string name="resistencia_a_tenacidad_y_relentizaciones">Resistencia a tenacidad y ralentizaciones</string>
+    <string name="subrunas">Subrunas</string>
+    <string name="velovidad_de_movimiento">Velocidad de movimiento</string>
+    <string name="vida">Vida</string>
+    <string name="runa_principal">Runa principal</string>
+    <string name="runa_secundaria">Runa secundaria</string>
 </resources>
