@@ -18,7 +18,6 @@ class InsertarRunas : AppCompatActivity() {
     lateinit var spinnerRunasSecun: Spinner
     lateinit var spinnerRunasSecun1: Spinner
     lateinit var spinnerRunasSecun2: Spinner
-    lateinit var spinnerRunasSecun3: Spinner
     lateinit var spinnerSubRunas1: Spinner
     lateinit var spinnerSubRunas2: Spinner
     lateinit var spinnerSubRunas3: Spinner
@@ -38,15 +37,16 @@ class InsertarRunas : AppCompatActivity() {
         spinnerRunasSecun = findViewById(R.id.spinnerRunasSecun)
         spinnerRunasSecun1 = findViewById(R.id.spinnerRunasSecun1)
         spinnerRunasSecun2 = findViewById(R.id.spinnerRunasSecun2)
-        spinnerRunasSecun3 = findViewById(R.id.spinnerRunasSecun3)
         spinnerSubRunas1 = findViewById(R.id.spinnerSubRunas1)
         spinnerSubRunas2 = findViewById(R.id.spinnerSubRunas2)
         spinnerSubRunas3 = findViewById(R.id.spinnerSubRunas3)
 
+        /**
+         * Spinner de las runas principal
+         */
         // Obtener el array de opciones desde los recursos
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, runasArray)
         spinnerRunasPrin.adapter = adapter
-
         spinnerRunasPrin.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
@@ -110,10 +110,76 @@ class InsertarRunas : AppCompatActivity() {
                 )
                 spinnerRunasSecun.adapter = updatedAdapter
             }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Implementación opcional para cuando no se selecciona nada
+            }
+        }
+
+        /**
+         * Spinner de las sunas secundarias
+         */
+        spinnerRunasSecun.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                val selectedValue = parent?.getItemAtPosition(position).toString()
+                when(selectedValue) {
+                    getString(R.string.precision) -> {
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunPrecision))
+                        spinnerRunasSecun1.adapter = adapter1
+                    }
+                    getString(R.string.dominacion) -> {
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunDominacion))
+                        spinnerRunasSecun1.adapter = adapter1
+                    }
+                    getString(R.string.brujeria) -> {
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunBrujeria))
+                        spinnerRunasSecun1.adapter = adapter1
+                    }
+                    getString(R.string.valor) -> {
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunValor))
+                        spinnerRunasSecun1.adapter = adapter1
+                    }
+                    getString(R.string.inspiracion) -> {
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunInspiracion))
+                        spinnerRunasSecun1.adapter = adapter1
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Implementación opcional para cuando no se selecciona nada
+            }
+        }
+
+        /**
+         *
+         */
+        spinnerRunasSecun1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                val selectedValue = parent?.getItemAtPosition(position).toString()
+
+                // Obtener los valores del spinnerRunasSecun1 sin la selección actual
+                val valuesWithoutSelection = obtenerValoresSinSeleccion(spinnerRunasSecun1, selectedValue)
+
+                // Configurar el adapter y asignarlo al spinnerRunasSecun2
+                val adapter2 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, valuesWithoutSelection)
+                spinnerRunasSecun2.adapter = adapter2
+            }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
             }
         }
     }
+    fun obtenerValoresSinSeleccion(spinner: Spinner, selectedValue: String): Array<String> {
+        val adapter = spinner.adapter as ArrayAdapter<String>
+        val values = mutableListOf<String>()
+        for (i in 0 until adapter.count) {
+            val value = adapter.getItem(i) ?: continue
+            if (value != selectedValue) {
+                values.add(value)
+            }
+        }
+        return values.toTypedArray()
+    }
+
 }
