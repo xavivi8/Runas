@@ -13,6 +13,9 @@ class Runas (
     @ColumnInfo(name = "id_usuario")
     val id_usuario: Long,
 
+    @ColumnInfo(name = "nombre")
+    val nombre: String,
+
     @ColumnInfo(name = "runaprincipal")
     val runaPrincipal: String,
 
@@ -23,7 +26,7 @@ class Runas (
     val runaSecundaria: String,
 
     @ColumnInfo(name = "subRunasSevundaria")
-    val subRunasSevundaria: String,
+    val subRunasSecundaria: String,
 
     @ColumnInfo(name = "ventajasAdicionales")
     val ventajasAdicionales: String,
