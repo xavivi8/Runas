@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Runas::class], version = 1)
+@Database(entities = [Runas::class], version = 2)
 abstract class RunasDatabase:  RoomDatabase() {
     abstract  fun runasDao(): RunasDao
 
