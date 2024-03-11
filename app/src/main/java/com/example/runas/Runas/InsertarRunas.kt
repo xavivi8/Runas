@@ -9,6 +9,18 @@ import com.example.runas.R
 
 class InsertarRunas : AppCompatActivity() {
     val va: Long = 1
+    val runaPrincipal: String = getString(R.string.precision)
+    val runaPrincipal1: String = getString(R.string.ataque_intensificado)
+    val runaPrincipal2: String = getString(R.string.supercoracion)
+    val runaPrincipal3: String = getString(R.string.leyenda_presteza)
+    val runaPrincipal4: String = getString(R.string.golpe_de_gracia)
+    val runaSecundaria: String = getString(R.string.dominacion)
+    val runaSecundaria1: String = getString(R.string.golpe_bajo)
+    val runaSecundaria2: String = getString(R.string.sabor_a_sangre)
+    val subRuna1: String = getString(R.string.fuerza_adaptable)
+    val subRuna2: String = getString(R.string.fuerza_adaptable)
+    val subRuna3: String = getString(R.string.vida)
+
 
     lateinit var spinnerRunasPrin: Spinner
     lateinit var spinnerRunasPrin1: Spinner
