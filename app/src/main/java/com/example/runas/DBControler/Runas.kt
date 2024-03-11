@@ -14,13 +14,13 @@ class Runas (
     val id_usuario: Long,
 
     @ColumnInfo(name = "runaprincipal")
-    val runaPrincipal: Long,
+    val runaPrincipal: String,
 
     @ColumnInfo(name = "subRunasPrincipal")
     val subRunasPrincipal: String,
 
     @ColumnInfo(name = "runasecundaria")
-    val runaSecundaria: Long,
+    val runaSecundaria: String,
 
     @ColumnInfo(name = "subRunasSevundaria")
     val subRunasSevundaria: String,
