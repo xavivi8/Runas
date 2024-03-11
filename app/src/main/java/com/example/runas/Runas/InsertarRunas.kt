@@ -1,15 +1,28 @@
 package com.example.runas.Runas
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import com.example.runas.DBControler.Runas
+import com.example.runas.DBControler.RunasDatabase
+import com.example.runas.Login.Login
 import com.example.runas.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class InsertarRunas : AppCompatActivity() {
-    var va: Long = 1
+    var id_usuario: Long = 1
+    var nombre: String = ""
+    var subRunasPrincipal: String = ""
+    var subRunasSecundaria: String = ""
+    var ventajasAdicionales: String = ""
     var runaPrincipal: String = ""
     var runaPrincipal1: String = ""
     var runaPrincipal2: String = ""
@@ -22,7 +35,7 @@ class InsertarRunas : AppCompatActivity() {
     var subRuna2: String = ""
     var subRuna3: String = ""
 
-
+    lateinit var database: RunasDatabase
     lateinit var spinnerRunasPrin: Spinner
     lateinit var spinnerRunasPrin1: Spinner
     lateinit var spinnerRunasPrin2: Spinner
@@ -34,13 +47,16 @@ class InsertarRunas : AppCompatActivity() {
     lateinit var spinnerSubRunas1: Spinner
     lateinit var spinnerSubRunas2: Spinner
     lateinit var spinnerSubRunas3: Spinner
-    lateinit var textViewPrueba: TextView
+    lateinit var edittextName: EditText
+    lateinit var btnCancel: Button
+    lateinit var btnSave: Button
     private val runasArray by lazy { resources.getStringArray(R.array.runasPrincipales) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insertar_runas)
+        database = RunasDatabase(this)
 
         // Inicializar los Spinners
         spinnerRunasPrin = findViewById(R.id.spinnerRunasPrin)
@@ -54,8 +70,22 @@ class InsertarRunas : AppCompatActivity() {
         spinnerSubRunas1 = findViewById(R.id.spinnerSubRunas1)
         spinnerSubRunas2 = findViewById(R.id.spinnerSubRunas2)
         spinnerSubRunas3 = findViewById(R.id.spinnerSubRunas3)
-        textViewPrueba = findViewById(R.id.textViewPrueba)
-        textViewPrueba.text = "runaPrincipal: $runaPrincipal runaPrincipal1: $runaPrincipal1 runaPrincipal2: $runaPrincipal2"
+        edittextName = findViewById(R.id.edittextName)
+        btnCancel = findViewById(R.id.btnCancel)
+        btnSave = findViewById(R.id.btnSave)
+
+        /**/
+        id_usuario = intent.getLongExtra("id_usuario", 500)
+        if (id_usuario != 0L && id_usuario != 500L) {
+
+        } else {
+            val inetntBtn = Intent(this, Login::class.java)
+            startActivity(inetntBtn)
+        }
+
+        // Obtener el valor del EditText edittextName
+        edittextName = findViewById(R.id.edittextName)
+        nombre = edittextName.text.toString()
 
         /* inicializar variables */
         runaPrincipal = getString(R.string.precision)
@@ -71,6 +101,16 @@ class InsertarRunas : AppCompatActivity() {
         subRuna3 = getString(R.string.vida)
 
         /**
+         * Btn cancelar
+         */
+        btnCancel.setOnClickListener {
+            val intentBtn = Intent(this, MenuRunas::class.java)
+            intentBtn.putExtra("id_usuario", id_usuario);
+            startActivity(intentBtn)
+            finish()
+        }
+
+        /**
          * Spinner spinnerSubRunas1
          */
         val adapterSpinnerSubRunas1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinnerSubRunas1))
@@ -80,7 +120,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 subRuna1 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -97,7 +136,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 subRuna2 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -114,7 +152,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 subRuna3 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -131,7 +168,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaPrincipal = selectedValue
-                actualizarTextView()
                 when(selectedValue) {
                     getString(R.string.precision) -> {
                         val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasPrecision1))
@@ -203,7 +239,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long){
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaPrincipal1 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -214,7 +249,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long){
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaPrincipal2 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -225,7 +259,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long){
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaPrincipal3 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -236,7 +269,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long){
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaPrincipal4 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -250,7 +282,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaSecundaria = selectedValue
-                actualizarTextView()
                 when(selectedValue) {
                     getString(R.string.precision) -> {
                         val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunPrecision))
@@ -287,7 +318,6 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaSecundaria1 = selectedValue
-                actualizarTextView()
                 // Obtener los valores del spinnerRunasSecun1 sin la selección actual
                 val valuesWithoutSelection = obtenerValoresSinSeleccion(spinnerRunasSecun1, selectedValue)
 
@@ -305,14 +335,13 @@ class InsertarRunas : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long){
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaSecundaria2 = selectedValue
-                actualizarTextView()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
             }
         }
     }
-    fun obtenerValoresSinSeleccion(spinner: Spinner, selectedValue: String): Array<String> {
+    private fun obtenerValoresSinSeleccion(spinner: Spinner, selectedValue: String): Array<String> {
         val adapter = spinner.adapter as ArrayAdapter<String>
         val values = mutableListOf<String>()
         for (i in 0 until adapter.count) {
@@ -324,8 +353,31 @@ class InsertarRunas : AppCompatActivity() {
         return values.toTypedArray()
     }
 
-    private fun actualizarTextView() {
-        textViewPrueba.text = "runaPrincipal: $runaPrincipal runaPrincipal1: $runaPrincipal1 runaPrincipal2: $runaPrincipal2"
+    private fun guardarRuna(){
+        database = RunasDatabase(this)
+        nombre = edittextName.text.toString()
+        val nuevaRuna = Runas(
+            id_usuario = id_usuario,
+            nombre = nombre,
+            runaPrincipal = runaPrincipal,
+            subRunasPrincipal = "$runaPrincipal1,$runaPrincipal2,$runaPrincipal3,$runaPrincipal4",
+            runaSecundaria = runaSecundaria,
+            subRunasSecundaria = "$runaSecundaria1,$runaSecundaria2",
+            ventajasAdicionales = "$subRuna1,$subRuna2,$subRuna3"
+        )
+
+        // Insertar la nueva instancia de Runas en la base de datos
+        GlobalScope.launch(Dispatchers.IO) {
+            val idInsertado = database.runasDao().insertRunas(nuevaRuna)
+            if (idInsertado > 0) {
+                // Éxito: la runa se ha guardado correctamente
+                // Puedes mostrar un mensaje o realizar alguna otra acción aquí
+            } else {
+                // Error al guardar la runa
+                // Puedes mostrar un mensaje de error o realizar alguna otra acción aquí
+            }
+        }
     }
+
 
 }
