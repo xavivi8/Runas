@@ -88,4 +88,5 @@
     <string name="vida">Vida</string>
     <string name="runa_principal">Runa principal</string>
     <string name="runa_secundaria">Runa secundaria</string>
+    <string name="nombre_de_la_pagina_de_runa">Nombre de la pagina de runa</string>
 </resources>
