@@ -88,6 +88,13 @@ class ListaRunas : AppCompatActivity() {
             mostrarSiguientesRunas(lista)
             mostrarSiguientesRunas(lista)
         }
+
+        /**
+         * Btn btnRuna1
+         */
+        btnRuna1.setOnClickListener {
+
+        }
     }
 
     private fun mostrarSiguientesRunas(runasList: List<Runas>) {
