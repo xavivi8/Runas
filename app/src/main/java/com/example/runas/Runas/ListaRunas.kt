@@ -1,11 +1,13 @@
 package com.example.runas.Runas
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.example.runas.DBControler.Runas
 import com.example.runas.DBControler.RunasDatabase
+import com.example.runas.Login.Login
 import com.example.runas.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -13,15 +15,22 @@ import kotlinx.coroutines.launch
 
 class ListaRunas : AppCompatActivity() {
 
+    var id_usuario: Long = -1
     var poscicionLista: Int = 0
+    var idBtn1: Long = 0
+    var idBtn2: Long = 0
+    var idBtn3: Long = 0
+    var idBtn4: Long = 0
+
     lateinit var database: RunasDatabase
     lateinit var textViewID: TextView
     lateinit var btnRuna1: Button
     lateinit var btnRuna2: Button
     lateinit var btnRuna3: Button
     lateinit var btnRuna4: Button
-    lateinit var btnPerfil: Button
-    lateinit var btnLogin: Button
+    lateinit var btnAtras: Button
+    lateinit var btnAlante: Button
+    lateinit var btnMenu: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +40,51 @@ class ListaRunas : AppCompatActivity() {
         btnRuna2 = findViewById(R.id.btnRuna2)
         btnRuna3 = findViewById(R.id.btnRuna3)
         btnRuna4 = findViewById(R.id.btnRuna4)
-        btnPerfil = findViewById(R.id.btnPerfil)
-        btnLogin = findViewById(R.id.btnLogin)
+        btnAtras = findViewById(R.id.btnAtras)
+        btnAlante = findViewById(R.id.btnAlante)
+        btnMenu = findViewById(R.id.btnMenu)
         var lista: List<Runas>
 
 
         // Encuentra la referencia del TextView mediante su ID definido en el layout XML
         textViewID = findViewById(R.id.textViewID)
-        var id: Long = 0
-        id = intent.getLongExtra("id_usuario", 500)
+        id_usuario = intent.getLongExtra("id_usuario", 500)
         // Establece el texto del TextView con el valor del ID de usuario
-        textViewID.text = "Id de Usuario: $id"
+        textViewID.text = "Id de Usuario: $id_usuario"
 
-        if (id != 0L && id != 500L) {
+        if (id_usuario != 0L && id_usuario != 500L) {
             GlobalScope.launch(Dispatchers.Main) {
-                lista = database.runasDao().obtenerRunasPorUsuario(id)
+                lista = database.runasDao().obtenerRunasPorUsuario(id_usuario)
                 mostrarSiguientesRunas(lista)
             }
+        } else {
+            val inetntBtn = Intent(this, Login::class.java)
+            startActivity(inetntBtn)
         }
 
+        /**
+         * Btn menu
+         */
+        btnMenu.setOnClickListener {
+            val inetntBtn = Intent(this, MenuRunas::class.java)
+            inetntBtn.putExtra("id_usuario", id_usuario);
+            startActivity(inetntBtn)
+            finish()
+        }
+
+        /**
+         * Btn atras
+         */
+        btnAtras.setOnClickListener {
+
+        }
+
+        /**
+         * Btn adelante
+         */
+        btnAlante.setOnClickListener {
+            
+        }
     }
 
     private fun mostrarSiguientesRunas(runasList: List<Runas>) {
