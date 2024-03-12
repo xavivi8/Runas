@@ -78,12 +78,14 @@ class ListaRunas : AppCompatActivity() {
          */
         btnAtras.setOnClickListener {
             mostrarRunasAnteriores(lista)
+            mostrarRunasAnteriores(lista)
         }
 
         /**
          * Btn adelante
          */
         btnAlante.setOnClickListener {
+            mostrarSiguientesRunas(lista)
             mostrarSiguientesRunas(lista)
         }
     }
@@ -135,15 +137,11 @@ class ListaRunas : AppCompatActivity() {
         }
     }
 
+
     private fun mostrarRunasAnteriores(runasList: List<Runas>) {
-        if (runasList.isNotEmpty()) {
+        if (runasList.isNotEmpty() && poscicionLista >= 4) {
             val startIndex = maxOf(poscicionLista - 4, 0) // Obtener el índice de inicio para las 4 runas anteriores
             val endIndex = poscicionLista // Calcular el índice del último elemento a mostrar (la posición actual)
-            if (poscicionLista < 4) {
-                // Mostrar Snackbar indicando que no hay suficientes runas para retroceder
-                Snackbar.make(btnAtras, "No hay suficientes runas para retroceder", Snackbar.LENGTH_SHORT).show()
-                return
-            }
             for (i in startIndex until endIndex) {
                 val runa = runasList[i]
                 when (i - startIndex + 1) { // Ajustar el índice para mostrar desde 1 hasta 4
@@ -175,11 +173,8 @@ class ListaRunas : AppCompatActivity() {
             }
             poscicionLista -= 4
         } else {
-            // Si la lista está vacía, establecer el texto de los botones como vacío
-            btnRuna1.text = ""
-            btnRuna2.text = ""
-            btnRuna3.text = ""
-            btnRuna4.text = ""
+            // Mostrar Snackbar indicando que no hay suficientes runas para retroceder
+            Snackbar.make(btnAtras, "No hay suficientes runas para retroceder", Snackbar.LENGTH_SHORT).show()
         }
     }
 
