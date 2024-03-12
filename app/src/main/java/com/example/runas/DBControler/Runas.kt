@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 class Runas (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_runa")
-    val id_runa: Long? = 0,
+    val id_runa: Long? = null,
 
     @ColumnInfo(name = "id_usuario")
     val id_usuario: Long,
