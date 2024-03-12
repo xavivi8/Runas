@@ -91,4 +91,6 @@
     <string name="runa_secundaria">"Secondary rune "</string>
     <string name="nombre_de_la_pagina_de_runa">"Rune page name "</string>
     <string name="menu">Menu</string>
+    <string name="atras">Back</string>
+    <string name="adelante">Following</string>
 </resources>
