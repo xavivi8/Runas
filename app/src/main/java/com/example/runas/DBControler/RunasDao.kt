@@ -19,4 +19,7 @@ interface RunasDao {
 
     @Query("SELECT * FROM runas WHERE id_usuario = :idUsuario")
     suspend fun obtenerRunasPorUsuario(idUsuario: Long): List<Runas>
+
+    @Query("SELECT * FROM runas WHERE id_runa = :idRuna")
+    suspend fun obtenerRunaPorId(idRuna: Long): Runas?
 }
