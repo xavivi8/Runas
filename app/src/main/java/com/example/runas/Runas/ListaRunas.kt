@@ -9,6 +9,7 @@ import com.example.runas.DBControler.Runas
 import com.example.runas.DBControler.RunasDatabase
 import com.example.runas.Login.Login
 import com.example.runas.R
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -43,7 +44,7 @@ class ListaRunas : AppCompatActivity() {
         btnAtras = findViewById(R.id.btnAtras)
         btnAlante = findViewById(R.id.btnAlante)
         btnMenu = findViewById(R.id.btnMenu)
-        var lista: List<Runas>
+        var lista: List<Runas> = emptyList()
 
 
         // Encuentra la referencia del TextView mediante su ID definido en el layout XML
@@ -76,30 +77,104 @@ class ListaRunas : AppCompatActivity() {
          * Btn atras
          */
         btnAtras.setOnClickListener {
-
+            mostrarRunasAnteriores(lista)
         }
 
         /**
          * Btn adelante
          */
         btnAlante.setOnClickListener {
-
+            mostrarSiguientesRunas(lista)
         }
     }
 
     private fun mostrarSiguientesRunas(runasList: List<Runas>) {
-        // Asegurarse de que poscicionLista esté dentro de los límites de la lista
-        if (poscicionLista >= 0 && poscicionLista < runasList.size) {
-            val lastIndex = minOf(poscicionLista + 4, runasList.size) // Último índice a considerar
+        if (runasList.isNotEmpty()) {
+            val lastIndex = minOf(poscicionLista + 4, runasList.size)
+            if (lastIndex - poscicionLista < 4) {
+                // Mostrar Snackbar indicando que no hay suficientes runas para avanzar
+                Snackbar.make(btnAlante, "No hay suficientes runas para avanzar", Snackbar.LENGTH_SHORT).show()
+                return
+            }
             for (i in poscicionLista until lastIndex) {
                 val runa = runasList[i]
-                when (i - poscicionLista + 1) { // Se ajusta el índice para mostrar desde 1 hasta 4
-                    1 -> btnRuna1.text = runa.id_runa.toString()
-                    2 -> btnRuna2.text = runa.id_runa.toString()
-                    3 -> btnRuna3.text = runa.id_runa.toString()
-                    4 -> btnRuna4.text = runa.id_runa.toString()
+                when (i - poscicionLista + 1) {
+                    1 -> {
+                        btnRuna1.text = runa.id_runa.toString()
+                        if(runa.id_runa != null){
+                            idBtn1 = runa.id_runa
+                        }
+                    }
+                    2 -> {
+                        btnRuna2.text = runa.id_runa.toString()
+                        if(runa.id_runa != null){
+                            idBtn2 = runa.id_runa
+                        }
+                    }
+                    3 -> {
+                        btnRuna3.text = runa.id_runa.toString()
+                        if(runa.id_runa != null){
+                            idBtn3 = runa.id_runa
+                        }
+                    }
+                    4 -> {
+                        btnRuna4.text = runa.id_runa.toString()
+                        if(runa.id_runa != null){
+                            idBtn4 = runa.id_runa
+                        }
+                    }
                 }
             }
+            poscicionLista += 4
+        } else {
+            // Si la lista está vacía, establecer el texto de los botones como vacío o algún mensaje indicando que no hay runas disponibles
+            btnRuna1.text = ""
+            btnRuna2.text = ""
+            btnRuna3.text = ""
+            btnRuna4.text = ""
+        }
+    }
+
+    private fun mostrarRunasAnteriores(runasList: List<Runas>) {
+        if (runasList.isNotEmpty()) {
+            val startIndex = maxOf(poscicionLista - 4, 0) // Obtener el índice de inicio para las 4 runas anteriores
+            val endIndex = poscicionLista // Calcular el índice del último elemento a mostrar (la posición actual)
+            for (i in startIndex until endIndex) {
+                val runa = runasList[i]
+                when (i - startIndex + 1) { // Ajustar el índice para mostrar desde 1 hasta 4
+                    1 -> {
+                        btnRuna1.text = runa.id_runa.toString()
+                        if (runa.id_runa != null) {
+                            idBtn1 = runa.id_runa
+                        }
+                    }
+                    2 -> {
+                        btnRuna2.text = runa.id_runa.toString()
+                        if (runa.id_runa != null) {
+                            idBtn2 = runa.id_runa
+                        }
+                    }
+                    3 -> {
+                        btnRuna3.text = runa.id_runa.toString()
+                        if (runa.id_runa != null) {
+                            idBtn3 = runa.id_runa
+                        }
+                    }
+                    4 -> {
+                        btnRuna4.text = runa.id_runa.toString()
+                        if (runa.id_runa != null) {
+                            idBtn4 = runa.id_runa
+                        }
+                    }
+                }
+            }
+            poscicionLista -= 4
+        } else {
+            // Si la lista está vacía, establecer el texto de los botones como vacío
+            btnRuna1.text = ""
+            btnRuna2.text = ""
+            btnRuna3.text = ""
+            btnRuna4.text = ""
         }
     }
 
