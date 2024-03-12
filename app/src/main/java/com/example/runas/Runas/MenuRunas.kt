@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.example.runas.DBControler.RunasDatabase
 import com.example.runas.Login.Login
 import com.example.runas.R
 
@@ -12,6 +13,7 @@ class MenuRunas : AppCompatActivity() {
 
     var id_usuario: Long = 1
 
+    lateinit var database: RunasDatabase
     lateinit var textViewID: TextView
     lateinit var btnPerfil: Button
     lateinit var btnLogin: Button
@@ -21,6 +23,7 @@ class MenuRunas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_runas)
+        database = RunasDatabase(this)
 
         textViewID = findViewById(R.id.textViewID)
         id_usuario = intent.getLongExtra("id_usuario", 500)
