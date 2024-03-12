@@ -360,7 +360,7 @@ class EditViewRuna : AppCompatActivity() {
                         spinnerRunasPrin3.adapter = adapter3
                         spinnerRunasPrin4.adapter = adapter4
 
-                        // Seleccionar los valores por defecto
+
                         println("runaPrincipal1: $runaPrincipal1, array1: ${array1.joinToString()}")
 
                         val defaultPosition1 = array1.indexOf(runaPrincipal1)
@@ -387,6 +387,13 @@ class EditViewRuna : AppCompatActivity() {
                     updatedRunasArray
                 )
                 spinnerRunasSecun.adapter = updatedAdapter
+
+                // Verificar si runaSecundaria está presente en updatedRunasArray y establecer la selección si es así
+                val indexSecun = updatedRunasArray.indexOf(runaSecundaria)
+                if (indexSecun != -1) {
+                    spinnerRunasSecun.setSelection(indexSecun)
+                }
+
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Implementación opcional para cuando no se selecciona nada
@@ -439,30 +446,101 @@ class EditViewRuna : AppCompatActivity() {
          * Spinner de las sunas secundarias
          */
         spinnerRunasSecun.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            var array1: Array<String> = arrayOf()
             override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
                 val selectedValue = parent?.getItemAtPosition(position).toString()
                 runaSecundaria = selectedValue
                 when(selectedValue) {
                     getString(R.string.precision) -> {
-                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunPrecision))
+                        // Obtener los arrays de recursos
+                        array1 = resources.getStringArray(R.array.runasSecunPrecision)
+
+                        // Crear adaptadores para cada spinner
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, array1)
+
+                        // Asignar los adaptadores a los spinners
                         spinnerRunasSecun1.adapter = adapter1
+
+                        // Seleccionar los valores por defecto
+                        val defaultPosition1 = array1.indexOf(runaSecundaria1)
+
+                        if (defaultPosition1 != -1) {
+                            spinnerRunasSecun1.setSelection(defaultPosition1)
+                        }
                     }
                     getString(R.string.dominacion) -> {
-                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunDominacion))
+                        // Obtener los arrays de recursos
+                        array1 = resources.getStringArray(R.array.runasSecunDominacion)
+
+                        // Crear adaptadores para cada spinner
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, array1)
+
+                        // Asignar los adaptadores a los spinners
                         spinnerRunasSecun1.adapter = adapter1
+
+                        // Seleccionar los valores por defecto
+                        val defaultPosition1 = array1.indexOf(runaSecundaria1)
+
+                        if (defaultPosition1 != -1) {
+                            spinnerRunasSecun1.setSelection(defaultPosition1)
+                        }
                     }
                     getString(R.string.brujeria) -> {
-                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunBrujeria))
+                        // Obtener los arrays de recursos
+                        array1 = resources.getStringArray(R.array.runasSecunBrujeria)
+
+                        // Crear adaptadores para cada spinner
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, array1)
+
+                        // Asignar los adaptadores a los spinners
                         spinnerRunasSecun1.adapter = adapter1
+
+                        // Seleccionar los valores por defecto
+                        val defaultPosition1 = array1.indexOf(runaSecundaria1)
+
+                        if (defaultPosition1 != -1) {
+                            spinnerRunasSecun1.setSelection(defaultPosition1)
+                        }
                     }
                     getString(R.string.valor) -> {
-                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunValor))
+                        // Obtener los arrays de recursos
+                        array1 = resources.getStringArray(R.array.runasSecunValor)
+
+                        // Crear adaptadores para cada spinner
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, array1)
+
+                        // Asignar los adaptadores a los spinners
                         spinnerRunasSecun1.adapter = adapter1
+
+                        // Seleccionar los valores por defecto
+                        val defaultPosition1 = array1.indexOf(runaSecundaria1)
+
+                        if (defaultPosition1 != -1) {
+                            spinnerRunasSecun1.setSelection(defaultPosition1)
+                        }
                     }
                     getString(R.string.inspiracion) -> {
-                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.runasSecunInspiracion))
+                        // Obtener los arrays de recursos
+                        array1 = resources.getStringArray(R.array.runasSecunInspiracion)
+
+                        // Crear adaptadores para cada spinner
+                        val adapter1 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, array1)
+
+                        // Asignar los adaptadores a los spinners
                         spinnerRunasSecun1.adapter = adapter1
+
+                        // Seleccionar los valores por defecto
+                        val defaultPosition1 = array1.indexOf(runaSecundaria1)
+
+                        if (defaultPosition1 != -1) {
+                            spinnerRunasSecun1.setSelection(defaultPosition1)
+                        }
                     }
+                }
+                // Código para seleccionar el valor coincidente por defecto en spinnerRunasSecun
+                val matchingIndex = array1.indexOf(runaSecundaria)
+                if (matchingIndex != -1) {
+                    spinnerRunasSecun1.setSelection(matchingIndex)
                 }
             }
 
@@ -484,6 +562,11 @@ class EditViewRuna : AppCompatActivity() {
                 // Configurar el adapter y asignarlo al spinnerRunasSecun2
                 val adapter2 = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, valuesWithoutSelection)
                 spinnerRunasSecun2.adapter = adapter2
+
+                val indexSecun = valuesWithoutSelection.indexOf(runaSecundaria2)
+                if (indexSecun != -1) {
+                    spinnerRunasSecun2.setSelection(indexSecun)
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
