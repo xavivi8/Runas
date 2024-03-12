@@ -93,7 +93,60 @@ class ListaRunas : AppCompatActivity() {
          * Btn btnRuna1
          */
         btnRuna1.setOnClickListener {
+            if (btnRuna1.text.isEmpty()) {
+                Snackbar.make(btnRuna1, "El texto de btnRuna1 está vacío", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val intentBtn = Intent(this, EditViewRuna::class.java)
+                intentBtn.putExtra("id_usuario", id_usuario);
+                intentBtn.putExtra("id_runa", idBtn1);
+                startActivity(intentBtn)
+                finish()
+            }
+        }
 
+        /**
+         * Btn btnRuna2
+         */
+        btnRuna2.setOnClickListener {
+            if (btnRuna2.text.isEmpty()) {
+                Snackbar.make(btnRuna2, "El texto de btnRuna2 está vacío", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val intentBtn = Intent(this, EditViewRuna::class.java)
+                intentBtn.putExtra("id_usuario", id_usuario);
+                intentBtn.putExtra("id_runa", idBtn2);
+                startActivity(intentBtn)
+                finish()
+            }
+        }
+
+        /**
+         * Btn btnRuna3
+         */
+        btnRuna3.setOnClickListener {
+            if (btnRuna3.text.isEmpty()) {
+                Snackbar.make(btnRuna3, "El texto de btnRuna3 está vacío", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val intentBtn = Intent(this, EditViewRuna::class.java)
+                intentBtn.putExtra("id_usuario", id_usuario);
+                intentBtn.putExtra("id_runa", idBtn3);
+                startActivity(intentBtn)
+                finish()
+            }
+        }
+
+        /**
+         * Btn btnRuna4
+         */
+        btnRuna4.setOnClickListener {
+            if (btnRuna4.text.isEmpty()) {
+                Snackbar.make(btnRuna4, "El texto de btnRuna3 está vacío", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val intentBtn = Intent(this, EditViewRuna::class.java)
+                intentBtn.putExtra("id_usuario", id_usuario);
+                intentBtn.putExtra("id_runa", idBtn4);
+                startActivity(intentBtn)
+                finish()
+            }
         }
     }
 
