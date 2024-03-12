@@ -83,7 +83,7 @@ class ListaRunas : AppCompatActivity() {
          * Btn adelante
          */
         btnAlante.setOnClickListener {
-            
+
         }
     }
 
