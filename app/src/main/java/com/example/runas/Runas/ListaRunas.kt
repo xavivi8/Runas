@@ -139,6 +139,11 @@ class ListaRunas : AppCompatActivity() {
         if (runasList.isNotEmpty()) {
             val startIndex = maxOf(poscicionLista - 4, 0) // Obtener el índice de inicio para las 4 runas anteriores
             val endIndex = poscicionLista // Calcular el índice del último elemento a mostrar (la posición actual)
+            if (poscicionLista < 4) {
+                // Mostrar Snackbar indicando que no hay suficientes runas para retroceder
+                Snackbar.make(btnAtras, "No hay suficientes runas para retroceder", Snackbar.LENGTH_SHORT).show()
+                return
+            }
             for (i in startIndex until endIndex) {
                 val runa = runasList[i]
                 when (i - startIndex + 1) { // Ajustar el índice para mostrar desde 1 hasta 4
