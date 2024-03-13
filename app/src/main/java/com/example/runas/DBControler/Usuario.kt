@@ -13,6 +13,9 @@ data class Usuario (
     @ColumnInfo(name = "usuario")
     val usuario: String,
 
+    @ColumnInfo(name = "imagen")
+    val imagen: String,
+
     @ColumnInfo(name = "contrasenya")
     val contrasenya: String,
 ){// Función redefinida para mostrar los datos correctamente
