@@ -57,17 +57,15 @@ class Perfil : AppCompatActivity() {
         id_usuario = intent.getLongExtra("id_usuario", 500)
         if (id_usuario != 0L && id_usuario != 500L) {
             GlobalScope.launch(Dispatchers.Main) {
-                elUsuario = database.usuarioDao().getUserById(id_usuario)
-                if (elUsuario != null) {
-
-                    editTextUser.setText(elUsuario?.usuario ?: "")
-                    if(elUsuario.imagen != []){
-
+                val usuarioTemporal = database.usuarioDao().getUserById(id_usuario)
+                if (usuarioTemporal != null) {
+                    elUsuario = usuarioTemporal // Actualizar el valor de elUsuario si es necesario
+                    editTextUser.setText(usuarioTemporal.usuario)
+                    usuarioTemporal.imagen?.let { // Comprobación de nulabilidad usando elvis operator
+                        imagenRic = byteArrayToBitmap(it)
+                        imageViewUsuario.setImageBitmap(imagenRic)
                     }
-                    imagenRic = byteArrayToBitmap(elUsuario.imagen)
-                    imageViewUsuario.setImageBitmap(imagenRic)
                 } else {
-
                     startActivity(inetntBtnLogin)
                     showToast("Error al coger el usuario")
                 }
@@ -75,6 +73,7 @@ class Perfil : AppCompatActivity() {
         } else {
             startActivity(inetntBtnLogin)
         }
+
 
         /**
          * Inicializamos
