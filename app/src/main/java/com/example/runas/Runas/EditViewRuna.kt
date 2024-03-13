@@ -13,6 +13,7 @@ import com.example.runas.DBControler.RunasDatabase
 import com.example.runas.Login.Login
 import com.example.runas.R
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -125,7 +126,15 @@ class EditViewRuna : AppCompatActivity() {
          * Btn save
          */
         btnSave.setOnClickListener {
-
+            val intentBtn = Intent(this, ListaRunas::class.java)
+            GlobalScope.launch { // Lanza una nueva corutina
+                val edit = editSuspendido()
+                if (edit) {
+                    intentBtn.putExtra("id_usuario", id_usuario);
+                    startActivity(intentBtn)
+                    finish()
+                }
+            }
         }
         /**
          * Spinner spinnerSubRunas1
@@ -677,6 +686,45 @@ class EditViewRuna : AppCompatActivity() {
             }
         }
         return values.toTypedArray()
+    }
+
+    /**
+     * guardarRuna se ha convertido en una función asincrona para evitar un bloqueo en el hilo principal
+     */
+    suspend fun editSuspendido(): Boolean {
+        // Llamamos a editarRuna() desde un contexto de corutina
+        val resultado: Boolean = editarRuna()
+        // Hacer algo con el resultado
+        return resultado
+    }
+
+    // Aquí defines tu función editarRuna()
+    private suspend fun editarRuna(): Boolean {
+        val nombre = edittextName.text.toString()
+
+        if (comprobarValores()) {
+            val rowsUpdated = withContext(Dispatchers.IO) {
+                database.runasDao().actualizarRunaPorId(
+                    idRuna = id_runa,
+                    nombre = nombre,
+                    runaPrincipal = runaPrincipal,
+                    subRunasPrincipal = "$runaPrincipal1,$runaPrincipal2,$runaPrincipal3,$runaPrincipal4",
+                    runaSecundaria = runaSecundaria,
+                    subRunasSecundaria = "$runaSecundaria1,$runaSecundaria2",
+                    ventajasAdicionales = "$subRuna1,$subRuna2,$subRuna3"
+                )
+            }
+
+            if (rowsUpdated > 0) {
+                Snackbar.make(findViewById(android.R.id.content), "Edición correcta", Snackbar.LENGTH_SHORT).show()
+                return true
+            } else {
+                Snackbar.make(findViewById(android.R.id.content), "Error al editar", Snackbar.LENGTH_SHORT).show()
+            }
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), "Algun valor falta por rellenar", Snackbar.LENGTH_SHORT).show()
+        }
+        return false
     }
 
     private fun comprobarValores(): Boolean {
