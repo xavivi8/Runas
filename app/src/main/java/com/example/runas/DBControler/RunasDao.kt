@@ -17,6 +17,17 @@ interface RunasDao {
     @Update
     suspend fun actualizarRunas(runas: Runas)
 
+    @Query("UPDATE runas SET nombre = :nombre, runaprincipal = :runaPrincipal, subRunasPrincipal = :subRunasPrincipal, runasecundaria = :runaSecundaria, subRunasSevundaria = :subRunasSecundaria, ventajasAdicionales = :ventajasAdicionales WHERE id_runa = :idRuna")
+    suspend fun actualizarRunaPorId(
+        idRuna: Long,
+        nombre: String,
+        runaPrincipal: String,
+        subRunasPrincipal: String,
+        runaSecundaria: String,
+        subRunasSecundaria: String,
+        ventajasAdicionales: String
+    ): Int
+
     @Query("SELECT * FROM runas WHERE id_usuario = :idUsuario")
     suspend fun obtenerRunasPorUsuario(idUsuario: Long): List<Runas>
 
