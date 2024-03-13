@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.runas.DBControler.RunasDatabase
 import com.example.runas.Login.Login
+import com.example.runas.Perfil.Perfil
 import com.example.runas.R
 
 class MenuRunas : AppCompatActivity() {
@@ -62,5 +63,11 @@ class MenuRunas : AppCompatActivity() {
 
         /* Boton perfil */
         btnPerfil = findViewById(R.id.btnPerfil)
+        btnPerfil.setOnClickListener {
+            val inetntBtn = Intent(this, Perfil::class.java)
+            inetntBtn.putExtra("id_usuario", id_usuario);
+            startActivity(inetntBtn)
+            finish()
+        }
     }
 }
