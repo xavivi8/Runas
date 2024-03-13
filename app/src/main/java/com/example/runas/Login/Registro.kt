@@ -36,7 +36,7 @@ class Registro : AppCompatActivity() {
 
             if (comprobarContra(pass.text.toString(), passAgain.text.toString())) {
                 showToast("Las contraseñas coinciden.")
-                val usuario = Usuario(usuario = user.text.toString(), contrasenya = pass.text.toString())
+                val usuario = Usuario(usuario = user.text.toString(), imagen = "" , contrasenya = pass.text.toString())
                 // Lanzar una corrutina en el hilo de fondo
                 CoroutineScope(Dispatchers.IO).launch {
                     // Llamar a insertUsuarioSafe en el hilo de fondo
