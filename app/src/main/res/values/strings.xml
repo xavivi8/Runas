@@ -92,4 +92,6 @@
     <string name="menu">Menú</string>
     <string name="atras">Atrás</string>
     <string name="adelante">Adelante</string>
+    <string name="photoCapture">Captura fotográfica</string>
+    <string name="selectPicture">Seleccionar una imagen</string>
 </resources>
