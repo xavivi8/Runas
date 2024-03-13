@@ -14,7 +14,7 @@ data class Usuario (
     val usuario: String,
 
     @ColumnInfo(name = "imagen")
-    val imagen: String,
+    val imagen: ByteArray? = null,
 
     @ColumnInfo(name = "contrasenya")
     val contrasenya: String,
