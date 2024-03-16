@@ -8,9 +8,8 @@
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
 
     <application
         android:name=".Login.SharedApplication"
@@ -21,8 +20,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Runas"
+        android:theme="@style/Theme.SQLite"
         tools:targetApi="31">
+        <activity
+            android:name=".Runas.ListViewRunas"
+            android:exported="false" />
         <activity
             android:name=".Perfil.Perfil"
             android:exported="false" />
