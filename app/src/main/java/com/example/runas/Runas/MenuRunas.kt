@@ -1,10 +1,13 @@
 package com.example.runas.Runas
 
+import android.content.ClipData.Item
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -118,5 +121,25 @@ class MenuRunas : AppCompatActivity() {
 
     fun byteArrayToBitmap(byteArray: ByteArray): Bitmap {
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+        // Asociamos el menú mediante el fichero de recurso
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.addRuna -> {
+                // Crear un Intent para iniciar la nueva actividad
+                val inetntBtn = Intent(this, InsertarRunas::class.java)
+                inetntBtn.putExtra("id_usuario", id_usuario);
+                startActivity(inetntBtn)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
