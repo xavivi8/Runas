@@ -7,28 +7,28 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "runas")
 class Runas (
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id_runa")
+    @ColumnInfo(name = "id")
     val id_runa: Long? = null,
 
-    @ColumnInfo(name = "id_usuario")
+    @ColumnInfo(name = "id_user")
     val id_usuario: Long,
 
-    @ColumnInfo(name = "nombre")
+    @ColumnInfo(name = "name ")
     val nombre: String,
 
-    @ColumnInfo(name = "runaprincipal")
+    @ColumnInfo(name = "main_rune ")
     val runaPrincipal: String,
 
-    @ColumnInfo(name = "subRunasPrincipal")
+    @ColumnInfo(name = "main_sub_rune ")
     val subRunasPrincipal: String,
 
-    @ColumnInfo(name = "runasecundaria")
+    @ColumnInfo(name = "secondary_rune ")
     val runaSecundaria: String,
 
-    @ColumnInfo(name = "subRunasSevundaria")
+    @ColumnInfo(name = "secondary_sub_rune ")
     val subRunasSecundaria: String,
 
-    @ColumnInfo(name = "ventajasAdicionales")
+    @ColumnInfo(name = "additional_advantages ")
     val ventajasAdicionales: String,
 ){
     override fun toString(): String {
