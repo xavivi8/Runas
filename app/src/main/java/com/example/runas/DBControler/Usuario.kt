@@ -4,19 +4,22 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 
-@Entity(tableName = "usuarios")
+@Entity(tableName = "users")
 data class Usuario (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Long = 0,
 
-    @ColumnInfo(name = "usuario")
+    @ColumnInfo(name = "email")
+    val email: String,
+
+    @ColumnInfo(name = "user_name")
     val usuario: String,
 
-    @ColumnInfo(name = "imagen")
+    @ColumnInfo(name = "image")
     val imagen: ByteArray? = null,
 
-    @ColumnInfo(name = "contrasenya")
+    @ColumnInfo(name = "pass")
     val contrasenya: String,
 ){// Función redefinida para mostrar los datos correctamente
     override fun toString(): String {
